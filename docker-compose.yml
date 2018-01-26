@@ -1,0 +1,23 @@
+version: '2'
+services:
+  express-multi:
+    hostname: 'express-multi'
+    environment:
+      - 'NODE_ENV=development'
+    build: .
+    container_name: 'express-multi'
+    command: nodemon server.js
+    ports:
+      - '3000:3000'
+    volumes:
+      - '$PWD:/opt/src'
+      - 'node_modules:/opt/src/node_modules'
+    networks:
+      - app
+    working_dir: '/opt/src'
+
+volumes:
+  node_modules:
+
+networks:
+  app:
